@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Portfolio of Anas Hafed - Machine Learning Engineer & Data Scientist">
     <title>Anas Hafed | ML Engineer & Data Architect</title>
-
+    <link rel="icon" type="image/x-icon" href="./img/ico.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -556,6 +556,32 @@
             box-shadow: 0 0 10px #ff0055;
             border-radius: 2px;
             z-index: 10002;
+        }
+        
+        /* Custom Binary Cursor Effect */
+        .cursor-digit {
+            position: fixed;
+            pointer-events: none;
+            /* Critical: allows clicking through the digits */
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1rem;
+            font-weight: bold;
+            z-index: 9999;
+            user-select: none;
+            animation: fallAndFade 1.5s forwards linear;
+        }
+
+        @keyframes fallAndFade {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(100px);
+                /* How far they drop */
+                opacity: 0;
+            }
         }
     </style>
 </head>
@@ -1310,6 +1336,43 @@
             scannerText.innerHTML = "[SYSTEM] Waiting for hover...";
         };
     </script>
+     <script>
+        const colors = ['#22d3ee', '#818cf8']; // Your theme colors (cyan and purple)
+        let lastEventTime = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            const now = Date.now();
+
+            // Only create a digit every 50ms to save performance
+            if (now - lastEventTime < 50) return;
+            lastEventTime = now;
+
+            const digit = document.createElement('div');
+            digit.className = 'cursor-digit';
+
+            // Randomly choose 0 or 1
+            digit.innerText = Math.round(Math.random());
+
+            // Randomly choose between your accent and purple colors
+            digit.style.color = colors[Math.floor(Math.random() * colors.length)];
+
+            // Position at cursor
+            digit.style.left = e.clientX + 'px';
+            digit.style.top = e.clientY + 'px';
+
+            // Add a tiny bit of random horizontal drift
+            const drift = (Math.random() - 0.5) * 40;
+            digit.style.setProperty('--drift', `${drift}px`);
+
+            document.body.appendChild(digit);
+
+            // Remove from DOM after animation finishes
+            setTimeout(() => {
+                digit.remove();
+            }, 1500);
+        });
+    </script>
 </body>
 
 </html>
+
