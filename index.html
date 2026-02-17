@@ -435,18 +435,60 @@
             }
         }
 
-        @media (max-width: 992px) {
+        @media (max-width: 768px) {
+            .hero {
+                height: auto;
+
+                padding-top: 100px;
+            }
+
             .hero-section {
                 grid-template-columns: 1fr;
-                text-align: center;
+                /* Stack elements vertically */
+                gap: 20px;
             }
 
             .contact-box {
-                margin: 0 auto;
+                max-width: 100%;
+                /* Take full width on small screens */
+            }
+
+
+        }
+
+        @media (max-width: 600px) {
+            .nav-links a {
+                margin-left: 10px;
+                font-size: 0.75rem;
+                /* Smaller text for tight spaces */
             }
 
             #nav-search {
                 display: none;
+                /* Hide search on very small screens to prevent overlap */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .card {
+                grid-column: span 1 !important;
+                /* Force all cards to 1 column width */
+            }
+
+            .bento-grid {
+                grid-template-columns: 1fr;
+                /* Single column layout */
+            }
+        }
+
+        @media (max-width: 480px) {
+            #terminal-overlay {
+                padding: 15px;
+            }
+
+            .terminal-content {
+                font-size: 0.8rem;
+                /* Make text readable but compact */
             }
         }
 
@@ -557,7 +599,7 @@
             border-radius: 2px;
             z-index: 10002;
         }
-        
+
         /* Custom Binary Cursor Effect */
         .cursor-digit {
             position: fixed;
@@ -1173,7 +1215,7 @@
                 const isLeft = (shooter === p1);
                 const rect = shooter.getBoundingClientRect(); // Get exact screen position
 
-              //  playSound(440, 'square', 0.1); // Shot sound
+                //  playSound(440, 'square', 0.1); // Shot sound
                 shooter.style.transform = `scale(0.9) translateX(${isLeft ? '-5px' : '5px'})`;
                 setTimeout(() => shooter.style.transform = 'scale(1)', 100);
 
@@ -1203,7 +1245,7 @@
                         !hitElem.classList.contains('stickman')) {
 
                         hitElem.classList.add('destroyed');
-                     //   playSound(120, 'sawtooth', 0.2); // Impact sound
+                        //   playSound(120, 'sawtooth', 0.2); // Impact sound
                         bullet.remove();
                         clearInterval(fly);
                     }
@@ -1336,7 +1378,7 @@
             scannerText.innerHTML = "[SYSTEM] Waiting for hover...";
         };
     </script>
-     <script>
+    <script>
         const colors = ['#22d3ee', '#818cf8']; // Your theme colors (cyan and purple)
         let lastEventTime = 0;
 
@@ -1375,4 +1417,3 @@
 </body>
 
 </html>
-
